@@ -118,7 +118,7 @@ export default function FindTutorsPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/tutors")
+      .get("https://lingualearnsever.vercel.app/tutors")
       .then((data) => setTutorsData(data.data))
       .catch((err) => console.log(err));
   }, []);

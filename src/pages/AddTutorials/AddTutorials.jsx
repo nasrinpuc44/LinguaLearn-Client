@@ -73,7 +73,7 @@ export default function AddTutorialPage() {
 
     console.log("Tutorial/Service Data:", formData);
 
-    const responce = await axios.post("http://localhost:5000/tutor", {
+    const responce = await axios.post("https://lingualearnsever.vercel.app/tutor", {
       ...formData,
       tutorName: user.displayName,
       email: user.email,

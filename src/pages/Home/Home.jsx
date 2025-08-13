@@ -12,10 +12,14 @@ import {
   Star,
   CheckCircle,
   PlayCircle,
+  Calendar,
+  DollarSign,
+  Award,
+  Clock,
+  Gift,
 } from "lucide-react";
 import StatsCounter from "../../components/Starts_counter";
 import BannerImage from "../../assets/Banner.webp";
-
 
 const languageCategories = [
   { name: "English", icon: Globe, tutors: 1200 },
@@ -29,32 +33,31 @@ const languageCategories = [
   { name: "Arabic", icon: Globe, tutors: 150 },
 ];
 
-
 const testimonials = [
   {
     name: "Sarah L.",
     quote:
       "LinguaLearn helped me find the perfect French tutor. My confidence has soared!",
-    avatar: "/placeholder.svg?width=50&height=50&text=SL",
+    avatar: "https://i.ibb.co.com/HfbpRGkn/l-profile.jpg",
   },
   {
     name: "John B.",
     quote:
       "The platform is so easy to use, and I started learning Spanish within days.",
-    avatar: "/placeholder.svg?width=50&height=50&text=JB",
+    avatar: "https://i.ibb.co.com/ZRQsLgkZ/1.jpg",
   },
   {
     name: "Maria K.",
     quote:
       "As a tutor, LinguaLearn has connected me with students worldwide. It's fantastic!",
-    avatar: "/placeholder.svg?width=50&height=50&text=MK",
+    avatar: "https://i.ibb.co.com/v4qDyGqD/bc66.jpg",
   },
 ];
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-  
+      {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary/10 to-secondary/10 py-20 md:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
           <motion.div
@@ -105,7 +108,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      
+      {/* Stats Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
@@ -136,8 +139,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      
+      {/* Featured Tutors Section */}
       <section className="py-16 md:py-24 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
+            Featured Tutors of the Month
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Md. Hasan",
+                language: "Spanish",
+                rating: 4.9,
+                students: 320,
+                image: "https://i.ibb.co.com/WmSMrf4/5ea705974f54209a843f0946993ffcc9-w.jpg",
+              },
+              {
+                name: "Nadim Bin Hossain",
+                language: "French",
+                rating: 4.8,
+                students: 280,
+                image: "https://i.ibb.co.com/B5yLNKWr/educator-giving-lecture-illustration-nomivdttrz0fo7tb.png",
+              },
+              {
+                name: "Autandrila Chakraborty",
+                language: "Mandarin",
+                rating: 4.95,
+                students: 410,
+                image: "https://i.ibb.co.com/ks9mzNMb/7d885d604d5f249a589d95ac17a950a2-w.jpg",
+              },
+            ].map((tutor, index) => (
+              <motion.div
+                key={tutor.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
+                    <img
+                      src={tutor.image}
+                      alt={tutor.name}
+                      width={120}
+                      height={120}
+                      className="rounded-full mb-4 object-cover w-30 h-30"
+                    />
+                    <h3 className="text-xl font-semibold text-foreground mb-1">
+                      {tutor.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-2">
+                      Teaches: {tutor.language}
+                    </p>
+                    <div className="flex items-center mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-5 w-5 ${i < Math.floor(tutor.rating) ? 'text-yellow-400 fill-current' : 'text-muted-foreground'}`}
+                        />
+                      ))}
+                      <span className="ml-2 text-sm text-muted-foreground">
+                        {tutor.rating}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {tutor.students.toLocaleString()} students taught
+                    </p>
+                    <Link to={`/tutor/${tutor.name.toLowerCase().replace(' ', '-')}`}>
+                      <Button className="w-full">
+                        Book Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Languages Section */}
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
             Explore Languages
@@ -177,7 +258,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      
+      {/* Why Learn With Us Section */}
+      <section className="py-16 md:py-24 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
+            Why Learn with Us?
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Clock,
+                title: "Flexible Scheduling",
+                description: "Learn at your convenience with 24/7 availability"
+              },
+              {
+                icon: DollarSign,
+                title: "Affordable Pricing",
+                description: "Quality lessons at competitive prices for all budgets"
+              },
+              {
+                icon: Award,
+                title: "Experienced Tutors",
+                description: "Certified professionals with years of teaching experience"
+              },
+              {
+                icon: Globe,
+                title: "Learn Anywhere",
+                description: "Take lessons from the comfort of your home"
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-6 bg-background rounded-lg text-center"
+              >
+                <benefit.icon className="h-12 w-12 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-foreground">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
@@ -222,8 +350,58 @@ export default function HomePage() {
         </div>
       </section>
 
-    
+      {/* Success Stories Section */}
       <section className="py-16 md:py-24 bg-muted/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
+            Success Stories
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Nasrin Sultana",
+                achievement: "Learned Spanish in just 6 months!",
+                image: "https://i.ibb.co.com/zhWBXK9G/Whats-App-Image-2025-06-28-at-22-58-10-a15653a6.jpg"
+              },
+              {
+                name: "Heung Min",
+                achievement: "Became fluent in Japanese for his new job",
+                image: "https://i.ibb.co.com/PZ71xp4Z/BFA-2023-2-Heung-Min-Son-cropped-jpg.webp"
+              },
+              {
+                name: "Emma Johnson",
+                achievement: "Passed her French DELF exam with honors",
+                image: "https://i.ibb.co.com/spvY7m8T/professional-profile-pictures-1427-x-1920-txfewtw6mcg0y6hk.webp"
+              }
+            ].map((story, index) => (
+              <motion.div
+                key={story.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-primary/10 to-secondary/10 p-8 rounded-lg text-center"
+              >
+                <img
+                  src={story.image}
+                  alt={story.name}
+                  width={100}
+                  height={100}
+                  className="rounded-full mx-auto mb-4 object-cover w-24 h-24"
+                />
+                <p className="text-lg italic text-muted-foreground mb-4">
+                  "{story.achievement}"
+                </p>
+                <h4 className="font-semibold text-foreground">
+                  - {story.name}
+                </h4>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
             What Our Users Say
@@ -261,6 +439,51 @@ export default function HomePage() {
                     </h4>
                   </CardContent>
                 </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Special Offers Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-r from-primary to-secondary">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-8 text-white">
+            Special Offers & Discounts
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "First Lesson Free",
+                description: "Get your first 30-minute lesson with any tutor for free",
+                icon: Gift
+              },
+              {
+                title: "Refer & Earn",
+                description: "Invite friends and earn $10 credit for each signup",
+                icon: Users
+              },
+              {
+                title: "Back to School",
+                description: "20% off all packages for students this season",
+                icon: BookOpen
+              }
+            ].map((offer, index) => (
+              <motion.div
+                key={offer.title}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20"
+              >
+                <offer.icon className="h-10 w-10 text-white mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-white">
+                  {offer.title}
+                </h3>
+                <p className="text-white/80">{offer.description}</p>
+                <Button variant="outline" className="mt-4 text-primary bg-white hover:bg-white/90">
+                  Claim Offer
+                </Button>
               </motion.div>
             ))}
           </div>

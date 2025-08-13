@@ -51,7 +51,7 @@ export default function TutorDetailsPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/tutor/${id}`)
+      .get(`https://lingualearnsever.vercel.app/tutor/${id}`)
       .then((data) => setTutor(data.data))
       .catch((err) => console.log(err));
 
@@ -73,7 +73,7 @@ export default function TutorDetailsPage() {
   const handleBookNow = async () => {
     // Simulate booking
     console.log(`Booking tutor ${tutor?.name}`); 
-    const responce = await axios.post(`http://localhost:5000/book`, {
+    const responce = await axios.post(`https://lingualearnsever.vercel.app/book`, {
       ...tutor, 
       tutorId : tutor._id,
       userEmail: user.email,

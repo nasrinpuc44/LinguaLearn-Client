@@ -10,8 +10,10 @@ import AddTutorialPage from "./pages/AddTutorials/AddTutorials";
 import FindTutorsPage from "./pages/FindTutorials/FindTutorials";
 import MyTutorialsPage from "./pages/MyTutorials/MyTutorials";
 import TutorDetailsPage from "./pages/TutorDetailsPage/TutorDetailsPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Authprovider from "./context/AuthProvider";
- import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+
 function App() {
   const Routers = createBrowserRouter([
     {
@@ -55,13 +57,17 @@ function App() {
         },
       ],
     },
+    {
+      path: "*",
+      element: <NotFoundPage />,
+    },
   ]);
 
   return (
     <>
-     <ToastContainer />
+      <ToastContainer />
       <Authprovider>
-        <RouterProvider router={Routers}></RouterProvider>{" "}
+        <RouterProvider router={Routers}></RouterProvider>
       </Authprovider>
     </>
   );
