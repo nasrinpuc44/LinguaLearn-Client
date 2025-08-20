@@ -49,7 +49,7 @@ export default function MyTutorialsPage() {
   console.log(myTutorials);
   useEffect(() => {
     axios
-      .get(`https://lingualearnsever.vercel.app/userTutor/${user?.email}`)
+      .get(`http://localhost:5000/userTutor/${user?.email}`)
       .then((data) => setMyTutorials(data.data))
       .catch((err) => console.log(err));
 
@@ -64,7 +64,7 @@ export default function MyTutorialsPage() {
     if (!tutorialToDelete) return;
 
     axios
-      .delete(`https://lingualearnsever.vercel.app/tutor/${tutorialToDelete._id}`) // Assuming tutorial has `_id`
+      .delete(`http://localhost:5000/tutor/${tutorialToDelete._id}`) // Assuming tutorial has `_id`
       .then((res) => {
         setMyTutorials((prev) =>
           prev.filter((tut) => tut._id !== tutorialToDelete._id)
@@ -102,7 +102,7 @@ export default function MyTutorialsPage() {
     console.log(editFormData);
 
     axios
-      .patch(`https://lingualearnsever.vercel.app/tutor/${tutorialToEdit._id}`, editFormData)
+      .patch(`http://localhost:5000/tutor/${tutorialToEdit._id}`, editFormData)
       .then((res) => {
      
         const updatedTutorial = res.data;

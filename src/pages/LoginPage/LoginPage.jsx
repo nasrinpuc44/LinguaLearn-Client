@@ -30,7 +30,7 @@ export default function LoginPage() {
           theme: "dark",
         });
 
-        fetch("https://lingualearnsever.vercel.app/Login", {
+        fetch("http://localhost:5000/Login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function LoginPage() {
         toast("User Login Success", {
           theme: "dark",
         });
-        fetch("https://lingualearnsever.vercel.app/Google-login", {
+        fetch("http://localhost:5000/Google-login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -64,7 +64,7 @@ export default function MyBookedTutorsPage() {
   console.log(bookedTutors);
   useEffect(() => {
     axios
-      .get(`https://lingualearnsever.vercel.app/userBooking/${user?.email}`)
+      .get(`http://localhost:5000/userBooking/${user?.email}`)
       .then((data) => setBookedTutors(data.data.data))
       .catch((err) => console.log(err));
   }, [user?.email]);
@@ -82,7 +82,7 @@ export default function MyBookedTutorsPage() {
     console.log(data);
 
     const responce = await axios.post(
-      `https://lingualearnsever.vercel.app/tutor/review/${data.tutorId}`,
+      `http://localhost:5000/tutor/review/${data.tutorId}`,
       {
         review: "Hello",
       }

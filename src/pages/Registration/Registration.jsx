@@ -43,7 +43,7 @@ export default function RegisterPage() {
             logoutuser();
             Navigate("/Login");
           
-            fetch("https://lingualearnsever.vercel.app/register", {
+            fetch("http://localhost:5000/register", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
